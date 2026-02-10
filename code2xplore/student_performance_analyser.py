@@ -1,4 +1,18 @@
-marks = [90,56,78,98,24,10,45]
+o=input("Enter your section ( I or J ) :")
+N=int(input("Enter no of students :"))
+marks =[0]*N
+for k in range(N) :
+    marks[k]=int(input("Enter students marks :"))
+if o == 'i' or 'I' :
+    for j in range (N):
+        marks[j]=marks[j]+1
+elif o == 'j' or 'J' :
+    for j in range (N):
+        marks[j]=marks[j]-1
+else :
+    for j in range (N):
+        marks[j]=marks[j]+0
+        print("Not a valid section")
 valid_students = len(marks)
 total_failed_students = 0
 print("STUDENTS GRADES")
@@ -17,7 +31,6 @@ for i in range (len(marks)) :
     else :
         print(marks[i] , "-> Fail ")
         total_failed_students = total_failed_students + 1
-
 print("-- SUMMARY --")
 print(" TOTAL Valid Students : ",valid_students)
 print(" Total failed Students : ",total_failed_students)
