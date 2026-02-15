@@ -1,4 +1,8 @@
-scores = [10, 45, 78, 120, -5, 30, 99, 150]
+scores = []
+n = int(input("How many scores: "))
+for i in range(n):
+    score = int(input("Enter score: "))
+    scores.append(score)
 register_number = int(input("Enter your register number: "))
 D = register_number % 10
 print("Register Digit (D):", D)
@@ -25,7 +29,6 @@ for score in scores:
         else:
             critical_risk.append(score)
 
-print("\n--- Categorized Data Before Filtering ---")
 print("Low Risk:", low_risk)
 print("Medium Risk:", medium_risk)
 print("High Risk:", high_risk)
@@ -40,7 +43,7 @@ if D % 2 == 0:
 else:
     removed_due_to_personalization = len(critical_risk)
     critical_risk = []
-print("\n--- After Personalized Filtering ---")
+print("\n After Personalized Filtering : ")
 print("Low Risk:", low_risk)
 print("Medium Risk:", medium_risk)
 print("High Risk:", high_risk)
