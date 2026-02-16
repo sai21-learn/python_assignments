@@ -46,11 +46,36 @@ for value in requests:
         total_valid = total_valid + 1
 
 
+# Apply PLI rule
+removed_count = 0
+
+if PLI == 0:
+    # Remove all Low Demand
+    for value in low_demand:
+        removed_count = removed_count + 1
+    low_demand = []
+
+elif PLI == 1:
+    # Remove all High Demand
+    for value in high_demand:
+        removed_count = removed_count + 1
+    high_demand = []
+
+elif PLI == 2:
+    # Keep only Moderate Demand
+    for value in low_demand:
+        removed_count = removed_count + 1
+    for value in high_demand:
+        removed_count = removed_count + 1
+    low_demand = []
+    high_demand = []
+
+
 # Final Report
 print("Full Name Length (L):", L)
 print("PLI Value:", PLI)
 print("Total Valid Requests:", total_valid)
-
+print("Requests Removed Due to PLI:", removed_count)
 
 print("Low Demand:", low_demand)
 print("Moderate Demand:", moderate_demand)
