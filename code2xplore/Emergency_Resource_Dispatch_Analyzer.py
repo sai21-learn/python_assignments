@@ -1,8 +1,14 @@
-# Input list (you can modify this)
-requests = [10, 25, 60, -3, 0, 45, 80]
+# Take full name input
+full_name = input("Enter your full name: ")
 
-# Full name (enter your full name here)
-full_name = "Sooraj"
+# Take resource requests as space-separated integers
+user_input = input("Enter resource requests separated by spaces: ")
+
+requests = []
+values = user_input.split()
+
+for v in values:
+    requests.append(int(v))
 
 # Remove spaces and calculate L
 name_no_spaces = ""
