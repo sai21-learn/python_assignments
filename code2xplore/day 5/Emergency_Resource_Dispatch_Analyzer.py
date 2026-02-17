@@ -1,16 +1,11 @@
-# Take full name input
 full_name = input("Enter your full name: ")
-
-# Take resource requests as space-separated integers
 user_input = input("Enter resource requests separated by spaces: ")
-
 requests = []
 values = user_input.split()
 
 for v in values:
     requests.append(int(v))
 
-# Remove spaces and calculate L
 name_no_spaces = ""
 for ch in full_name:
     if ch != " ":
@@ -22,7 +17,6 @@ for ch in name_no_spaces:
 
 PLI = L % 2
 
-# Create required lists
 low_demand = []
 moderate_demand = []
 high_demand = []
@@ -30,7 +24,6 @@ invalid_requests = []
 
 total_valid = 0
 
-# Categorization using for loop
 for value in requests:
 
     if value < 0:
@@ -52,23 +45,20 @@ for value in requests:
         total_valid = total_valid + 1
 
 
-# Apply PLI rule
+
 removed_count = 0
 
 if PLI == 0:
-    # Remove all Low Demand
     for value in low_demand:
         removed_count = removed_count + 1
     low_demand = []
 
 elif PLI == 1:
-    # Remove all High Demand
     for value in high_demand:
         removed_count = removed_count + 1
     high_demand = []
 
 elif PLI == 2:
-    # Keep only Moderate Demand
     for value in low_demand:
         removed_count = removed_count + 1
     for value in high_demand:
@@ -76,8 +66,6 @@ elif PLI == 2:
     low_demand = []
     high_demand = []
 
-
-# Final Report
 print("Full Name Length (L):", L)
 print("PLI Value:", PLI)
 print("Total Valid Requests:", total_valid)
