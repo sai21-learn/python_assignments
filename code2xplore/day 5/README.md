@@ -40,38 +40,59 @@ Analyze emergency resource requests by categorizing demand levels (No Demand: 0,
 
 ## Sample Test Cases
 
-### Test Case 1: PLI = 0 (Remove Low Demand)
+### Test Case 1: PLI = 1 (Remove Low Demand)
 **Input:**
 ```
-Name: Alice Brown (L=10, PLI=1)
-Requests: 12, 45, 75, 8, 52
+Enter your full name: Arun Kumar
+Enter resource requests separated by spaces: 10 25 60 -5 0 18
 ```
 **Output:**
 ```
-Low Demand: [], Moderate Demand: [45], High Demand: [75, 52], No Demand: []
-Removed: 2
+Full Name Length (L): 10
+PLI Value: 1
+Total Valid Requests: 4
+Requests Removed Due to PLI: 2
+Low Demand: []
+Moderate Demand: [25]
+High Demand: [60]
+No Demand: [0]
+Invalid Requests: [-5]
 ```
 
-### Test Case 2: PLI = 1 (Remove High Demand)
+### Test Case 2: PLI = 1 (Remove Low Demand)
 **Input:**
 ```
-Name: John Smith (L=9, PLI=0)
-Requests: 10, 25, 35, 60, 15
+Enter your full name: Riya
+Enter resource requests separated by spaces: 5 22 55 100 -3 1
 ```
 **Output:**
 ```
-Low Demand: [10, 15], Moderate Demand: [25, 35], High Demand: [], No Demand: []
-Removed: 1
+Full Name Length (L): 4
+PLI Value: 1
+Total Valid Requests: 5
+Requests Removed Due to PLI: 2
+Low Demand: []
+Moderate Demand: [22]
+High Demand: [55, 100]
+No Demand: []
+Invalid Requests: [-3]
 ```
 
-### Test Case 3: PLI = 2 (Remove Low, High, and No Demand)
+### Test Case 3: PLI = 2 (Remove High Demand)
 **Input:**
 ```
-Name: Bob Wilson (L=9, PLI=0)
-Requests: 5, -10, 30, 100, 0, 15, 55
+Enter your full name: Karan Singh
+Enter resource requests separated by spaces: 2 45 75 19 0 -8 51
 ```
 **Output:**
 ```
-Low Demand: [], Moderate Demand: [30], High Demand: [], No Demand: [], Invalid Requests: [-10]
-Removed: 4
+Full Name Length (L): 11
+PLI Value: 2
+Total Valid Requests: 5
+Requests Removed Due to PLI: 2
+Low Demand: [2, 19]
+Moderate Demand: [45]
+High Demand: []
+No Demand: [0]
+Invalid Requests: [-8]
 ```
