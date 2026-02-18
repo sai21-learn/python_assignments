@@ -1,66 +1,77 @@
 # Day 5: Emergency Resource Dispatch Analyzer
 
 ## Challenge Description
-Analyze emergency resource requests by categorizing demand levels (Low: 1-20, Moderate: 21-50, High: 50+). Apply personalized filtering based on name length PLI = L % 2 to remove Low Demand (if PLI even) or High Demand (if PLI odd).
+Analyze emergency resource requests by categorizing demand levels (No Demand: 0, Low: 1-20, Moderate: 21-50, High: >50). Apply personalized filtering based on name length PLI = L % 3 to remove specific demand categories based on the PLI value.
 
 ## Approach / Logic Used
-- Calculate PLI from name length (without spaces)
-- Categorize requests into three demand buckets
-- Filter categories based on PLI: remove Low if even, remove High if odd
+- Calculate PLI from name length without spaces: PLI = L % 3
+- Categorize requests into four demand buckets (No Demand, Low, Moderate, High) and invalid requests
+- Filter categories based on PLI value:
+  - PLI 0: removes Low Demand only
+  - PLI 1: removes High Demand only
+  - PLI 2: removes Low, High, and No Demand (keeps only Moderate)
 - Provide allocation report with categorization and removal count
 
 ## Personalized Length Index (PLI) - Explained
 
 1. Take the full name provided
 2. Count all letters (ignore spaces): L = total letter count
-3. Calculate PLI = L % 2 (modulo 2)
-   - If L is even → PLI = 0 (remove High Demand requests)
-   - If L is odd → PLI = 1 (remove Low Demand requests)
+3. Calculate PLI = L % 3 (modulo 3)
+   - If PLI = 0 → remove Low Demand requests
+   - If PLI = 1 → remove High Demand requests
+   - If PLI = 2 → remove Low Demand, No Demand, and High Demand requests (keep only Moderate)
 
-**Example:** "Alice Brown" has 10 letters → PLI = 10 % 2 = 0 (even) → High Demand items get filtered out
+**Example:** "Alice Brown" has 10 letters → PLI = 10 % 3 = 1 → High Demand items get filtered out
 
 ## Algorithm / Steps
 1. Input full name and resource requests
-2. Calculate L = name length without spaces, PLI = L % 2
-3. Categorize requests into Low, Moderate, High, and Invalid (negative)
-4. Display initial categorization
-5. Apply PLI-based filtering
-6. Display filtered results with removal count
+2. Calculate L = name length without spaces, PLI = L % 3
+3. Categorize requests into:
+   - No Demand (0)
+   - Low Demand (1-20)
+   - Moderate Demand (21-50)
+   - High Demand (>50)
+   - Invalid Requests (negative values)
+4. Apply PLI-based filtering:
+   - PLI = 0: Remove Low Demand requests
+   - PLI = 1: Remove High Demand requests
+   - PLI = 2: Remove Low Demand, High Demand, and No Demand requests
+5. Display allocation report with filtered results and removal count
 
 ## Sample Test Cases
 
-### Test Case 1: Even PLI (Clear High Demand)
+### Test Case 1: PLI = 0 (Remove Low Demand)
 **Input:**
 ```
-Name: Alice Brown (L=10, PLI=0)
+Name: Alice Brown (L=10, PLI=1)
 Requests: 12, 45, 75, 8, 52
 ```
 **Output:**
 ```
-Low: [12, 8], Moderate: [45], High: []
+Low Demand: [], Moderate Demand: [45], High Demand: [75, 52], No Demand: []
 Removed: 2
 ```
 
-### Test Case 2: Odd PLI (Clear Low Demand)
+### Test Case 2: PLI = 1 (Remove High Demand)
 **Input:**
 ```
-Name: John Smith (L=9, PLI=1)
+Name: John Smith (L=9, PLI=0)
 Requests: 10, 25, 35, 60, 15
 ```
 **Output:**
 ```
-Low: [], Moderate: [25, 35], High: [60]
-Removed: 2
+Low Demand: [10, 15], Moderate Demand: [25, 35], High Demand: [], No Demand: []
+Removed: 1
 ```
 
-### Test Case 3: Mixed with Invalid
+### Test Case 3: PLI = 2 (Remove Low, High, and No Demand)
 **Input:**
 ```
-Name: Bob Wilson (L=9, PLI=1)
+Name: Bob Wilson (L=9, PLI=0)
 Requests: 5, -10, 30, 100, 0, 15, 55
 ```
 **Output:**
 ```
-Low: [], Moderate: [30], High: [100], Invalid: [-10]
-Removed: 2
+Low Demand: [], Moderate Demand: [30], High Demand: [], No Demand: [], Invalid Requests: [-10]
+Removed: 4
 ```
