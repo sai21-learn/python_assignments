@@ -20,6 +20,8 @@ PLI = L % 2
 low_demand = []
 moderate_demand = []
 high_demand = []
+no_demand = []
+
 invalid_requests = []
 
 total_valid = 0
@@ -43,9 +45,6 @@ for value in requests:
     elif value > 50:
         high_demand.append(value)
         total_valid = total_valid + 1
-
-
-
 removed_count = 0
 
 if PLI == 0:
@@ -61,10 +60,15 @@ elif PLI == 1:
 elif PLI == 2:
     for value in low_demand:
         removed_count = removed_count + 1
+
     for value in high_demand:
+        removed_count = removed_count + 1
+
+    for value in no_demand:
         removed_count = removed_count + 1
     low_demand = []
     high_demand = []
+    no_demand = []
 
 print("Full Name Length (L):", L)
 print("PLI Value:", PLI)
@@ -74,4 +78,5 @@ print("Requests Removed Due to PLI:", removed_count)
 print("Low Demand:", low_demand)
 print("Moderate Demand:", moderate_demand)
 print("High Demand:", high_demand)
+print("No Demand:", no_demand)
 print("Invalid Requests:", invalid_requests)
