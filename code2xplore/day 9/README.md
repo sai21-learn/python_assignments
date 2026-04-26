@@ -1,4 +1,4 @@
-# Day 8: Inventory Data Corruption Simulator (Shallow vs Deep Copy)
+# Day 9: Inventory Data Corruption Simulator (Shallow vs Deep Copy)
 
 ## Challenge Description
 A warehouse system maintains inventory where each product contains nested details (price, stock, supplier info). The system must analyze how data changes when copied and modified — simulating real-world data corruption issues. The program creates both shallow and deep copies of the inventory, modifies them based on a custom rule, and compares the structures to detect if the original data was corrupted.
